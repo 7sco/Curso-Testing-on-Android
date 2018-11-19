@@ -1,62 +1,73 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
 android {
-    compileSdkVersion 27
-    buildToolsVersion '28.0.3'
+  compileSdkVersion 27
+  buildToolsVersion '28.0.3'
 
-    defaultConfig {
-        applicationId "com.tonilopezmr.androidtesting"
-        minSdkVersion 15
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary = true
+  defaultConfig {
+    applicationId "com.tonilopezmr.androidtesting"
+    minSdkVersion 15
+    targetSdkVersion 27
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    vectorDrawables.useSupportLibrary = true
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+  }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
 }
 
 configurations.all {
-    resolutionStrategy.force 'com.android.support:support-annotations:24.0.0'
+  resolutionStrategy.force 'com.android.support:support-annotations:24.0.0'
 }
 
 dependencies {
-    //Unit Test
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:2.16.0'
+  //Unit Test
+  testImplementation 'junit:junit:4.12'
+  testImplementation 'org.mockito:mockito-inline:2.23.0'
+  testImplementation 'org.hamcrest:hamcrest-junit:2.0.0.0'
 
-    //Android Test
-    androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.2'
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.1') {
-        exclude group: 'javax.inject', module: 'javax.inject'
-        exclude group: 'com.squareup', module: 'javawriter'
-    }
-    androidTestImplementation('com.android.support.test.espresso:espresso-contrib:2.2.1') {
-        exclude module: 'support-annotations'
-        exclude module: 'recyclerview-v7'
-        exclude module: 'support-v4'
-    }
 
-    implementation "com.android.support:customtabs:27.0.2"
-    androidTestImplementation'com.android.support.test:runner:1.0.2'
-    androidTestImplementation'com.android.support.test:rules:1.0.2'
 
-    //app dependencies
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha2'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
-    implementation "com.google.guava:guava:24.1-jre"
-    implementation 'com.google.code.gson:gson:2.8.5'
+  //Android Test
+  androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.2'
+  androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.1') {
+    exclude group: 'javax.inject', module: 'javax.inject'
+    exclude group: 'com.squareup', module: 'javawriter'
+  }
+  androidTestImplementation('com.android.support.test.espresso:espresso-contrib:2.2.1') {
+    exclude module: 'support-annotations'
+    exclude module: 'recyclerview-v7'
+    exclude module: 'support-v4'
+  }
+
+  implementation "com.android.support:customtabs:27.0.2"
+  androidTestImplementation 'com.android.support.test:runner:1.0.2'
+  androidTestImplementation 'com.android.support.test:rules:1.0.2'
+
+  //app dependencies
+  implementation 'com.android.support:appcompat-v7:27.1.1'
+  implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha2'
+  implementation 'com.android.support:design:27.1.1'
+  implementation 'com.squareup.picasso:picasso:2.71828'
+  implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+  implementation "com.google.guava:guava:24.1-jre"
+  implementation 'com.google.code.gson:gson:2.8.5'
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+  mavenCentral()
 }
