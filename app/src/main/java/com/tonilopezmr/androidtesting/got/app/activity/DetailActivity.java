@@ -49,7 +49,8 @@ public class DetailActivity extends AppCompatActivity {
 
     private void showImage(String imageUrl) {
         ImageView ivp = (ImageView) findViewById(R.id.iv_photo);
-        Picasso.with(getApplicationContext()).load(imageUrl).into(ivp);
+
+        Picasso.get().load(imageUrl).into(ivp);
     }
 
     private void initToolbar(String name) {

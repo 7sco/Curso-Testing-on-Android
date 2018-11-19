@@ -88,7 +88,7 @@ public class CharacterAdapter
         }
 
         public void render(final GoTCharacter character) {
-            Picasso.with(imageView.getContext())
+            Picasso.get()
                     .load(character.getImageUrl())
                     .fit()
                     .into(imageView);
